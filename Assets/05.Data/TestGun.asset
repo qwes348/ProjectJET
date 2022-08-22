@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b998b8b0b1e9cc54c80458a96bec41c8, type: 3}
+  m_Name: TestGun
+  m_EditorClassIdentifier: 
+  gunName: Test
+  bulletPrefab: {fileID: 5160834837297172569, guid: b0242864442399a419103766982129d2, type: 3}
+  magazineSize: 10
+  damage: 1
+  firerate: 1
+  reloadTime: 1
+  maxRange: 5
+  bulletSpeed: 700
