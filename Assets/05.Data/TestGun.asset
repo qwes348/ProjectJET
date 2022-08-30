@@ -18,5 +18,5 @@ MonoBehaviour:
   damage: 1
   firerate: 1
   reloadTime: 1
-  maxRange: 5
+  maxRange: 10
   bulletSpeed: 700
