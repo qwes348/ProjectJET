@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float jetpackPower;
     [SerializeField]
     private float groundCheckDistance = 0.2f;
+    private float currentHealth;
 
     [Header("µð¹ö±×")]
     [SerializeField][ReadOnly]
@@ -42,6 +43,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        GameManager.instance.SetPlayer(this);        
+    }
+
     private void Update()
     {
         isInputJetpack = Input.GetKey(KeyCode.W);
@@ -63,6 +69,12 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("JetpackThrust", isInputJetpack);
     }
 
+    public void Init()
+    {
+        currentHealth = GameManager.instance.startHealth;
+        GameCanvasManager.instance.UpdatePlayerHPText(currentHealth);
+    }
+
     private void UpdateGroundDistance()
     {
         var hit = Physics2D.Raycast(modelTransform.position, modelTransform.up * -1f, Mathf.Infinity, 1 << LayerMask.NameToLayer("Ground"));
@@ -81,5 +93,14 @@ public class PlayerController : MonoBehaviour
             return;        
 
         rb.AddForce(jetpackPower * Time.fixedDeltaTime * transform.up, ForceMode2D.Impulse);
+    }
+
+    public void GetDamage(GameObject attacker, float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0f)
+            GameManager.instance.SetGameState(Enums.GameState.End);
+
+        GameCanvasManager.instance.UpdatePlayerHPText(currentHealth);
     }
 }

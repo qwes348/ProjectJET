@@ -5,6 +5,7 @@ using UnityEngine;
 public class PistolBullet : Bullet
 {
     private Coroutine runningFireCor;
+    private Damageable detectedTarget;
 
     public override void Init(GunWeapon gunWeapon)
     {
@@ -20,6 +21,8 @@ public class PistolBullet : Bullet
         {
             myPoolable = GetComponent<Poolable>();
         }
+
+        runningFireCor = null;
     }
 
     public override void Fire(Vector3 startPos, Vector3 forwradDir)
@@ -57,8 +60,30 @@ public class PistolBullet : Bullet
         }
     }
 
+    private void DamageToTarget()
+    {
+        if (detectedTarget == null)
+            return;
+
+        detectedTarget.GetDamage(gameObject, MyGun.MyGunData.damage);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (runningFireCor == null)
+            return;
+        if (collision.CompareTag("Player"))
+            return;
+
+        var damageable = collision.GetComponent<Damageable>();
+        if (damageable == null)
+            return;
+
+        detectedTarget = damageable;
+
+        StopCoroutine(runningFireCor);
+        runningFireCor = null;
+
+        DamageToTarget();
     }
 }
