@@ -21,4 +21,7 @@ public class GunData : ScriptableObject
     public float maxRange;
     [Header("총알 속도")]
     public float bulletSpeed;
+
+    [Header("한번에 나올 수 있는 최대총알 수")]
+    public int maxBulletCount;
 }

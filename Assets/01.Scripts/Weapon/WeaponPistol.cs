@@ -6,6 +6,8 @@ public class WeaponPistol : GunWeapon
 {
     private Coroutine runningReloadCor;
 
+    private int currentSpawnedBulletCount = 0;
+
     public override void Init(GunData newGunData)
     {
         myGunData = newGunData;
@@ -29,6 +31,8 @@ public class WeaponPistol : GunWeapon
     {
         if (myGunData == null)
             return;
+        if (currentSpawnedBulletCount >= myGunData.maxBulletCount)
+            return;
 
         //Bullet bullet = Instantiate(myGunData.bulletPrefab, transform.position, Quaternion.identity);
         Bullet bullet = PoolManager.Instance.Pop(myGunData.bulletPrefab.MyPoolable).GetComponent<Bullet>();
@@ -36,6 +40,8 @@ public class WeaponPistol : GunWeapon
         bullet.Init(this);
         bullet.gameObject.SetActive(true);
         bullet.Fire(transform.position, transform.right);
+
+        currentSpawnedBulletCount++;
     }    
 
     IEnumerator ReloadCor()
@@ -45,5 +51,10 @@ public class WeaponPistol : GunWeapon
         currentMagazine = MagazineSize;
 
         runningReloadCor = null;
+    }
+
+    public void ReduceBulletCount(int count = 1)
+    {
+        currentSpawnedBulletCount -= count;
     }
 }

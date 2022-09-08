@@ -54,10 +54,7 @@ public class PistolBullet : Bullet
             prevPos = transform.position;            
         }
 
-        if(myPoolable != null)
-        {
-            PoolManager.Instance.Push(myPoolable);
-        }
+        Push();
     }
 
     private void DamageToTarget()
@@ -85,5 +82,16 @@ public class PistolBullet : Bullet
         runningFireCor = null;
 
         DamageToTarget();
+
+        Push();
+    }
+    
+    public void Push()
+    {
+        if (myPoolable == null)
+            return;
+
+        (myGun as WeaponPistol).ReduceBulletCount();
+        PoolManager.Instance.Push(myPoolable);
     }
 }
