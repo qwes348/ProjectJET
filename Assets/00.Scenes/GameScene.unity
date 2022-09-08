@@ -1361,7 +1361,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missileST: {fileID: 1734057846}
+  electricLinePrefab: {fileID: 2628763079022222443, guid: cc7c36226d1bc284291f1324897fc302, type: 3}
   missileSpawnRate: 0.5
+  electricLineSpawnRate: 0.3
+  electricLineRotList:
+  - -45
+  - 0
+  - 45
 --- !u!1 &1643498948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,7 +1668,6 @@ GameObject:
   - component: {fileID: 2079848098}
   - component: {fileID: 2079848099}
   - component: {fileID: 2079848097}
-  - component: {fileID: 2079848100}
   m_Layer: 0
   m_Name: Model
   m_TagString: Player
@@ -1824,22 +1829,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2079848100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079848093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28a5e4c2b0d05064aaa3b6251fe3dadc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: missile
-  instantateCount: 0
-  isAutoPush: 0
-  autoPushTime: 0
 --- !u!1001 &118751434066751573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2016,6 +2005,10 @@ PrefabInstance:
     - target: {fileID: 5191694073029854154, guid: 7adb547a5dcaea64bb952bcead6bc2c6, type: 3}
       propertyPath: m_Name
       value: Tilemap (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5191694073029854154, guid: 7adb547a5dcaea64bb952bcead6bc2c6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7adb547a5dcaea64bb952bcead6bc2c6, type: 3}

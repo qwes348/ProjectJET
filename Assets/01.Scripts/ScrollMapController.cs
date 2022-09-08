@@ -5,7 +5,9 @@ using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
 public class ScrollMapController : MonoBehaviour
-{    
+{
+    public static ScrollMapController instance;
+
     [SerializeField] private GameObject firstMapPrefab;
     [SerializeField] private List<Poolable> mapPrefabList;
 
@@ -31,6 +33,9 @@ public class ScrollMapController : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+            instance = this;
+
         var newMap = Instantiate(firstMapPrefab, transform);
         newMap.SetActive(true);
         activeMapList.Add(newMap.transform);
@@ -74,11 +79,8 @@ public class ScrollMapController : MonoBehaviour
         foreach (var map in destroyList)
         {
             activeMapList.Remove(map.transform);
-            var poolable = map.GetComponent<Poolable>();
-            if(poolable == null)
-                Destroy(map.gameObject);
-            else
-                PoolManager.Instance.Push(map.GetComponent<Poolable>());
+            var platform = map.GetComponent<PlatformMap>();
+            platform.PushToPool();
         }
     }
 

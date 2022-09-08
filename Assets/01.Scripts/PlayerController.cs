@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private bool isInputJetpack;
     [SerializeField]
     private GunData testGunData;
+
+    private Sequence damageSequence;
 
     public bool IsOnGround
     {
@@ -102,5 +105,20 @@ public class PlayerController : MonoBehaviour
             GameManager.instance.SetGameState(Enums.GameState.End);
 
         GameCanvasManager.instance.UpdatePlayerHPText(currentHealth);
+        PlayDamageTween();
+    }
+
+    private void PlayDamageTween()
+    {
+        if (damageSequence == null)
+        {
+            var spr = modelTransform.GetComponent<SpriteRenderer>();
+            damageSequence = DOTween.Sequence()
+                .Append(spr.DOColor(Color.red, 0.2f))
+                .Append(spr.DOColor(Color.white, 0.2f))
+                .SetAutoKill(false);
+        }
+        else
+            damageSequence.Restart();
     }
 }
