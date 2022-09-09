@@ -290,6 +290,7 @@ MonoBehaviour:
   myGun: {fileID: 1453633385}
   jetpackPower: 20
   groundCheckDistance: 0.55
+  maxPosY: 4.37
   groundDistance: 0
   isInputJetpack: 0
   testGunData: {fileID: 11400000, guid: dead02f22844d954099df26285424524, type: 2}

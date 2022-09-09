@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float jetpackPower;
     [SerializeField]
     private float groundCheckDistance = 0.2f;
+    [SerializeField]
+    private float maxPosY = 4.37f;
     private float currentHealth;
 
     [Header("µð¹ö±×")]
@@ -70,6 +72,8 @@ public class PlayerController : MonoBehaviour
             ThrustJetpack();
 
         anim.SetBool("JetpackThrust", isInputJetpack);
+
+        MaxPosYCheck();
     }
 
     public void Init()
@@ -93,9 +97,18 @@ public class PlayerController : MonoBehaviour
     private void ThrustJetpack()
     {
         if (rb == null)
-            return;        
+            return;
 
-        rb.AddForce(jetpackPower * Time.fixedDeltaTime * transform.up, ForceMode2D.Impulse);
+        if (transform.position.y < maxPosY)
+            rb.AddForce(jetpackPower * Time.fixedDeltaTime * transform.up, ForceMode2D.Impulse);
+        else
+            rb.velocity = Vector3.zero;
+    }
+
+    private void MaxPosYCheck()
+    {
+        if (transform.position.y >= maxPosY)
+            transform.position = new Vector3(transform.position.x, maxPosY, transform.position.z);
     }
 
     public void GetDamage(GameObject attacker, float damage)
