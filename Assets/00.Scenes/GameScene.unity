@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 305164753}
   - component: {fileID: 305164752}
   - component: {fileID: 305164754}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -678,9 +678,12 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   allPoolables:
+  - {fileID: 5785581047003430211, guid: efd7f80a42cac3443af8b4c1f2cf5594, type: 3}
   - {fileID: -5307720379164152249, guid: b0242864442399a419103766982129d2, type: 3}
   - {fileID: -179937954077833632, guid: 7adb547a5dcaea64bb952bcead6bc2c6, type: 3}
   - {fileID: -8008390242173670679, guid: 82383483e7ed6914989e75c6702af133, type: 3}
+  - {fileID: 2628763079022222443, guid: cc7c36226d1bc284291f1324897fc302, type: 3}
+  - {fileID: -8366087721750298653, guid: 2baa888424841bf4bb2a91c0de8fee55, type: 3}
 --- !u!4 &993232629
 Transform:
   m_ObjectHideFlags: 0
@@ -1134,7 +1137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1453633384}
   - component: {fileID: 1453633385}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1363,6 +1366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missileST: {fileID: 1734057846}
   electricLinePrefab: {fileID: 2628763079022222443, guid: cc7c36226d1bc284291f1324897fc302, type: 3}
+  lazerPrefab: {fileID: 5785581047003430211, guid: efd7f80a42cac3443af8b4c1f2cf5594, type: 3}
   missileSpawnRate: 0.5
   maxMissileCount: 3
   electricLineSpawnRate: 0.3
@@ -1370,6 +1374,11 @@ MonoBehaviour:
   - -45
   - 0
   - 45
+  lazerSpawnRate: 0.1
+  lazerSpawnCheckTime: 1
+  lazerMaxCount: 3
+  lazerUpgradeInterval: 5
+  lazerHeightMinMax: {x: -3.5, y: 4.5}
 --- !u!1 &1643498948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,7 +1595,7 @@ GameObject:
   - component: {fileID: 2079848098}
   - component: {fileID: 2079848099}
   - component: {fileID: 2079848097}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Player
   m_Icon: {fileID: 0}
